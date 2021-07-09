@@ -55,14 +55,13 @@ main#home-main {
 #searchedMovies img {
   object-fit: cover;
   width: 20rem;
-  height: 10rem;
+  height: 13rem;
 }
 
 /*Footer*/
 footer {
   background-color: #141414;
   color: #808080;
-
 }
 
 p {

@@ -6,10 +6,13 @@ import CustomCarousel from "./CustomCarousel"
 class SearchArea extends Component {
   state = {
     stateMovies: [],
+    marvelMovies: [],
+    dcMovies: [],
+    starWarsMovies: [],
     searchValue: "",
   }
 
-  fetchAndDisplayMovies = async (search, e) => {
+  fetchMovies = async (search, movieSection, e) => {
     if (e) {
       e.preventDefault()
     }
@@ -23,7 +26,7 @@ class SearchArea extends Component {
       const movies = parsedResponse.Search
 
       if (response.ok) {
-        this.setState({ stateMovies: movies })
+        this.setState({ [movieSection]: movies })
       } else {
         console.log("something went wrong")
       }
@@ -37,7 +40,10 @@ class SearchArea extends Component {
   }
 
   componentDidMount = () => {
-    this.fetchAndDisplayMovies("harry potter")
+    this.fetchMovies("harry potter", "stateMovies")
+    this.fetchMovies("marvel", "marvelMovies")
+    this.fetchMovies("justice league", "dcMovies")
+    this.fetchMovies("star wars", "starWarsMovies")
   }
 
   render() {
@@ -45,10 +51,10 @@ class SearchArea extends Component {
       <Container fluid id="search-area">
         <Row className="pl-2 w-100 justify-content-between align-items-center">
           <Col xm={12} sm={8} md={6} lg={5} className="d-flex">
-            <h3 className="mr-3 text-nowrap">Search Movies</h3>
+            <h3 className="mr-3 text-nowrap">Search</h3>
             <form
               onSubmit={(e) =>
-                this.fetchAndDisplayMovies(this.state.searchValue, e)
+                this.fetchMovies(this.state.searchValue, "stateMovies", e)
               }
               className="d-flex"
             >
@@ -81,29 +87,16 @@ class SearchArea extends Component {
           </Col>
         </Row>
         <Row className="mt-4 pl-2" id="searchedMovies">
-          {/*  {this.state.stateMovies.map((movie) => (
-            <Col
-              xm={12}
-              sm={6}
-              md={4}
-              lg={3}
-              className="mb-3"
-              key={movie.imdbID}
-            >
-              <img className="img-fluid" src={movie.Poster} alt={movie.Title} />
-            </Col>
-          ))} */}
           <CustomCarousel
-            searchQuery={this.state.searchQuery}
+            rowTitle="Searched Movies"
             movies={this.state.stateMovies}
+            searchQuery={this.state.searchValue}
           />
+          <CustomCarousel rowTitle="Marvel" movies={this.state.marvelMovies} />
+          <CustomCarousel rowTitle="Dc" movies={this.state.dcMovies} />
           <CustomCarousel
-            movies={this.state.stateMovies}
-            searchQuery="Lord of the rings"
-          />
-          <CustomCarousel
-            movies={this.state.stateMovies}
-            searchQuery="Avengers"
+            rowTitle="Star Wars"
+            movies={this.state.starWarsMovies}
           />
         </Row>
       </Container>

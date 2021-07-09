@@ -14,8 +14,6 @@ export default class CustomCarousel extends Component {
       )
       const fetchedMovies = await response.json()
       this.setState({ movies: fetchedMovies.Search })
-      console.log(fetchedMovies.Search)
-      console.log(this.state.movies)
     } catch (error) {
       console.log(error)
     }
@@ -26,43 +24,38 @@ export default class CustomCarousel extends Component {
 
   render() {
     return (
-      <div className="my-5">
-        <Carousel>
+      <Container fluid>
+        <h4>{this.props.rowTitle}</h4>
+        <Carousel interval={null}>
           <Carousel.Item>
-            <Container fluid>
-              <Row>
-                {this.props.movies
-                  .filter((movie, i) => i < 6)
-                  .map((movie) => (
-                    <MyCarouselMovie movie={movie} />
-                  ))}
-              </Row>
-            </Container>
+            <Row>
+              {this.props.movies
+                .filter((movie, i) => i < 6)
+                .map((movie, i) => (
+                  <MyCarouselMovie key={i} movie={movie} />
+                ))}
+            </Row>
           </Carousel.Item>
           <Carousel.Item>
-            <Container fluid>
-              <Row>
-                {this.props.movies
-                  .filter((movie, i) => i < 6)
-                  .map((movie) => (
-                    <MyCarouselMovie movie={movie} />
-                  ))}
-              </Row>
-            </Container>
+            <Row>
+              {this.props.movies
+                .filter((movie, i) => i < 6)
+                .map((movie, i) => (
+                  <MyCarouselMovie key={i} movie={movie} />
+                ))}
+            </Row>
           </Carousel.Item>
           <Carousel.Item>
-            <Container fluid>
-              <Row>
-                {this.props.movies
-                  .filter((movie, i) => i < 6)
-                  .map((movie) => (
-                    <MyCarouselMovie movie={movie} />
-                  ))}
-              </Row>
-            </Container>
+            <Row>
+              {this.props.movies
+                .filter((movie, i) => i < 6)
+                .map((movie, i) => (
+                  <MyCarouselMovie key={i} movie={movie} />
+                ))}
+            </Row>
           </Carousel.Item>
         </Carousel>
-      </div>
+      </Container>
     )
   }
 }
