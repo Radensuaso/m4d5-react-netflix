@@ -9,6 +9,8 @@ function App() {
     <>
       <NetflixNavbar />
       <SearchArea />
+      {/* <CustomCarousel searchQuery="Lord of the rings" /> */}
+
       {/*  <CustomCarousel /> */}
       <Footer />
     </>

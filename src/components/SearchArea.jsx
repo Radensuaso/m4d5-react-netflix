@@ -97,6 +97,14 @@ class SearchArea extends Component {
             searchQuery={this.state.searchQuery}
             movies={this.state.stateMovies}
           />
+          <CustomCarousel
+            movies={this.state.stateMovies}
+            searchQuery="Lord of the rings"
+          />
+          <CustomCarousel
+            movies={this.state.stateMovies}
+            searchQuery="Avengers"
+          />
         </Row>
       </Container>
     )

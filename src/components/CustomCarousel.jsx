@@ -1,48 +1,35 @@
-import React, { Component } from "react";
-import MyCarouselMovie from "./MyCarouselMovie";
-import { Container, Row, Col, Carousel } from "react-bootstrap";
+import React, { Component } from "react"
+import MyCarouselMovie from "./MyCarouselMovie"
+import { Container, Row, Carousel } from "react-bootstrap"
 
 export default class CustomCarousel extends Component {
   state = {
     movies: [],
-  };
+  }
   fetchMovies = async () => {
     try {
-      console.log(this.props.searchQuery);
+      console.log(this.props.searchQuery)
       const response = await fetch(
         "http://www.omdbapi.com/?apikey=3d9e8fbe&s=" + this.props.searchQuery
-      );
-      const fetchedMovies = await response.json();
-      this.setState({ movies: fetchedMovies.Search });
-      console.log(fetchedMovies.Search);
-      console.log(this.state.movies);
+      )
+      const fetchedMovies = await response.json()
+      this.setState({ movies: fetchedMovies.Search })
+      console.log(fetchedMovies.Search)
+      console.log(this.state.movies)
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
   componentDidMount = () => {
-    this.fetchMovies();
-  };
+    this.fetchMovies()
+  }
 
   render() {
     return (
-      <div>
-        {/*  <Container>
-          <Row>
-            {this.props.movies.map((movie) => (
-              <Col xs={12} sm={6} md={4} lg={3} xl={2}>
-                <img
-                  className="d-block w-100"
-                  src={movie.Poster}
-                  alt={movie.Title}
-                />
-              </Col>
-            ))}
-          </Row>
-        </Container> */}
+      <div className="my-5">
         <Carousel>
           <Carousel.Item>
-            <Container>
+            <Container fluid>
               <Row>
                 {this.props.movies
                   .filter((movie, i) => i < 6)
@@ -53,10 +40,10 @@ export default class CustomCarousel extends Component {
             </Container>
           </Carousel.Item>
           <Carousel.Item>
-            <Container>
+            <Container fluid>
               <Row>
                 {this.props.movies
-                  .filter((movie, i) => i >= 5 && i <= 10)
+                  .filter((movie, i) => i < 6)
                   .map((movie) => (
                     <MyCarouselMovie movie={movie} />
                   ))}
@@ -64,10 +51,10 @@ export default class CustomCarousel extends Component {
             </Container>
           </Carousel.Item>
           <Carousel.Item>
-            <Container>
+            <Container fluid>
               <Row>
                 {this.props.movies
-                  .filter((movie, i) => i > 2 && i < 9)
+                  .filter((movie, i) => i < 6)
                   .map((movie) => (
                     <MyCarouselMovie movie={movie} />
                   ))}
@@ -76,6 +63,6 @@ export default class CustomCarousel extends Component {
           </Carousel.Item>
         </Carousel>
       </div>
-    );
+    )
   }
 }
