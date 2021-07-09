@@ -1,38 +1,112 @@
-.App {
-  text-align: center;
-}
+/* Common */
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+body {
+  background-color: #141414;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/*Nav Bar*/
+
+nav.home-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.bg-dark-netflix {
+  background-color: #141414;
+}
+
+#logo-navbar {
+  width: 70px;
+}
+
+#profile-pic {
+  width: 2rem;
+}
+
+/* Main */
+main#home-main {
+  margin-top: 5rem;
+}
+
+/*Footer*/
+footer {
+  background-color: #141414;
+  color: #808080;
+}
+
+p {
+  font-size: 13px;
+}
+#copyright {
+  font-size: 11px;
+}
+
+.service-code {
+  border: 1px solid #808080;
+  background-color: #141414;
+  color: #808080;
+  padding: 7px;
+  cursor: pointer;
+}
+
+.btn {
+  border-radius: 0 !important;
+}
+
+.btn-secondary {
+  background-color: #141414 !important;
+}
+
+nav {
+  font-size: 14px;
+}
+
+#div-Icons div {
+  border: 1px solid #808080;
+  padding: 3px 10px;
+  margin: 0;
+  display: inline-block;
+}
+#div-Icons {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  color: #808080;
+  width: 107px;
+}
+#row-icons {
+  position: relative;
+}
+
+#edit-profile-title {
+  border-bottom: 1px solid #dddddd;
+}
+
+h1 {
+  font-size: 64.36px;
+}
+
+#strive-student {
+  background-color: #666;
+  color: white;
+  padding: 0px;
+  font-size: 25px;
+  margin-right: 50px;
+}
+
+#language {
+  color: white;
+  font-size: 25px;
+}
+.m-bottom {
+  border-bottom: 1px solid #dddddd;
+}
+
+#maturity-ratings {
+  background-color: #333333;
+  margin-right: 160px;
 }
