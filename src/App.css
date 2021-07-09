@@ -1,8 +1,8 @@
 /* Common */
 
 body {
-  background-color: #141414;
-  color: white;
+  background-color: #141414 !important;
+  color: white !important;
 }
 
 /*Nav Bar*/
@@ -26,10 +26,36 @@ nav.home-navbar {
 #profile-pic {
   width: 2rem;
 }
-
 /* Main */
 main#home-main {
   margin-top: 5rem;
+}
+
+/* search area */
+#search-area {
+  margin-top: 4rem;
+  color: white;
+}
+
+#div-Icons > div div {
+  border: 1px solid #808080;
+  padding: 3px 10px;
+  margin: 0;
+  display: inline-block;
+}
+#div-Icons {
+  color: #808080;
+  width: 107px;
+}
+
+#edit-profile-title {
+  border-bottom: 1px solid #dddddd;
+}
+
+#searchedMovies img {
+  object-fit: cover;
+  width: 20rem;
+  height: 10rem;
 }
 
 /*Footer*/
@@ -63,27 +89,6 @@ p {
 
 nav {
   font-size: 14px;
-}
-
-#div-Icons div {
-  border: 1px solid #808080;
-  padding: 3px 10px;
-  margin: 0;
-  display: inline-block;
-}
-#div-Icons {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  color: #808080;
-  width: 107px;
-}
-#row-icons {
-  position: relative;
-}
-
-#edit-profile-title {
-  border-bottom: 1px solid #dddddd;
 }
 
 h1 {
