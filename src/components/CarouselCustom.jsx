@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import MyCarouselMovie from "./MyCarouselMovie";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Carousel } from "react-bootstrap";
 
-export default class Carousel extends Component {
+export default class CarouselCustom extends Component {
   state = {
     movies: [],
   };

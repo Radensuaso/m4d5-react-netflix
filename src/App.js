@@ -1,6 +1,6 @@
 import "./App.css"
 import NetflixNavbar from "./components/SaraNetflixNavbar"
-import Carousel from "./components/Carousel"
+import CarouselCustom from "./components/CarouselCustom"
 import React, { Component } from 'react'
 
 export default class App extends Component {
@@ -13,9 +13,9 @@ export default class App extends Component {
          <>
       <NetflixNavbar  searchCallback={(childSearchquery)=>this.setState({query:childSearchquery})} />
 
-     {this.state.query?<Carousel searchQuery={this.state.query} />:<Carousel searchQuery="harry potter" />} 
-     <Carousel searchQuery="Lord of the rings" />
-     <Carousel searchQuery="harry potter" />
+     {this.state.query?<CarouselCustom searchQuery={this.state.query} />:<CarouselCustom searchQuery="harry potter" />} 
+     <CarouselCustom searchQuery="Lord of the rings" />
+     <CarouselCustom searchQuery="harry potter" />
     
     </>
      
