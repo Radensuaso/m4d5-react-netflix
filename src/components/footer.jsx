@@ -37,12 +37,12 @@ const Footer = () => (
           <p className="text-nowrap">Terms of Use</p>
           <p className="text-nowrap">Corporate Information</p>
         </Col>
-        <Col xs={12} ClassName="mb-2 my-4">
+        <Col xs={12} className="mb-2 my-4">
           <a className="service-code" href="/">
             Service Code
           </a>
         </Col>
-        <Col xs={12} ClassName="mb-2">
+        <Col xs={12} className="mb-2">
           <p id="copyright">
             {/* &reg;1997 - 2019 Netflix, Inc. {i-0d00fcda2fdf9c0de} */}
           </p>
