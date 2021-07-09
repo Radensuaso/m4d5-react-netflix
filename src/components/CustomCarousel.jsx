@@ -1,28 +1,28 @@
-import React, { Component } from "react";
-import MyCarouselMovie from "./MyCarouselMovie";
-import { Container, Row, Col } from "react-bootstrap";
+import React, { Component } from "react"
+import MyCarouselMovie from "./MyCarouselMovie"
+import { Container, Row, Col, Carousel } from "react-bootstrap"
 
-export default class Carousel extends Component {
+export default class CustomCarousel extends Component {
   state = {
     movies: [],
-  };
+  }
   fetchMovies = async () => {
     try {
-      console.log(this.props.searchQuery);
+      console.log(this.props.searchQuery)
       const response = await fetch(
         "http://www.omdbapi.com/?apikey=3d9e8fbe&s=" + this.props.searchQuery
-      );
-      const fetchedMovies = await response.json();
-      this.setState({ movies: fetchedMovies.Search });
-      console.log(fetchedMovies.Search);
-      console.log(this.state.movies);
+      )
+      const fetchedMovies = await response.json()
+      this.setState({ movies: fetchedMovies.Search })
+      console.log(fetchedMovies.Search)
+      console.log(this.state.movies)
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
   componentDidMount = () => {
-    this.fetchMovies();
-  };
+    this.fetchMovies()
+  }
 
   render() {
     return (
@@ -40,7 +40,7 @@ export default class Carousel extends Component {
             ))}
           </Row>
         </Container>
-        {/*  <Carousel>
+        <Carousel>
           <Carousel.Item>
             <Container>
               <Row>
@@ -58,7 +58,7 @@ export default class Carousel extends Component {
                 {this.state.movies
                   .filter((movie, i) => i >= 2 && i < 8)
                   .map((movie) => {
-                    <MyCarouselMovie movie={movie} />;
+                    ;<MyCarouselMovie movie={movie} />
                   })}
               </Row>
             </Container>
@@ -69,13 +69,13 @@ export default class Carousel extends Component {
                 {this.state.movies
                   .filter((movie, i) => i >= 5 && i < 10)
                   .map((movie) => {
-                    <MyCarouselMovie movie={movie} />;
+                    ;<MyCarouselMovie movie={movie} />
                   })}
               </Row>
             </Container>
           </Carousel.Item>
-        </Carousel> */}
+        </Carousel>
       </div>
-    );
+    )
   }
 }
