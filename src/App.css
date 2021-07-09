@@ -52,6 +52,12 @@ main#home-main {
   border-bottom: 1px solid #dddddd;
 }
 
+#searchedMovies img {
+  object-fit: cover;
+  width: 20rem;
+  height: 10rem;
+}
+
 /*Footer*/
 footer {
   background-color: #141414;
