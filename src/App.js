@@ -13,7 +13,10 @@ export default class App extends Component {
          <>
       <NetflixNavbar  searchCallback={(childSearchquery)=>this.setState({query:childSearchquery})} />
 
-     {this.state.query&&<Carousel searchQuery={this.state.query} />} 
+     {this.state.query?<Carousel searchQuery={this.state.query} />:<Carousel searchQuery="harry potter" />} 
+     <Carousel searchQuery="Lord of the rings" />
+     <Carousel searchQuery="harry potter" />
+    
     </>
      
     )
