@@ -9,7 +9,7 @@ function App() {
     <>
       <NetflixNavbar />
       <SearchArea />
-      <CustomCarousel />
+     {/*  <CustomCarousel /> */}
       <Footer />
     </>
   )

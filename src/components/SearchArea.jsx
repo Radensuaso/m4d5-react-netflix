@@ -1,37 +1,38 @@
-import React, { Component } from "react"
-import { Button, Container, Row, Col, Form } from "react-bootstrap"
-import { FaStream, FaThLarge } from "react-icons/fa"
+import React, { Component } from "react";
+import { Button, Container, Row, Col, Form } from "react-bootstrap";
+import { FaStream, FaThLarge } from "react-icons/fa";
+import CustomCarousel from "./CustomCarousel";
 
 class SearchArea extends Component {
   state = {
     stateMovies: [],
     searchValue: "",
-  }
+  };
 
   fetchAndDisplayMovies = async (e, search) => {
-    e.preventDefault()
+    e.preventDefault();
 
     try {
       const response = await fetch(
         "http://www.omdbapi.com/?apikey=3d9e8fbe&s=" + search
-      )
+      );
 
-      const parsedResponse = await response.json()
-      const movies = parsedResponse.Search
+      const parsedResponse = await response.json();
+      const movies = parsedResponse.Search;
 
       if (response.ok) {
-        this.setState({ stateMovies: movies })
+        this.setState({ stateMovies: movies });
       } else {
-        console.log("something went wrong")
+        console.log("something went wrong");
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   updateSearchState = (value) => {
-    this.setState({ searchValue: value })
-  }
+    this.setState({ searchValue: value });
+  };
 
   render() {
     return (
@@ -74,7 +75,7 @@ class SearchArea extends Component {
           </Col>
         </Row>
         <Row className="mt-4 pl-2" id="searchedMovies">
-          {this.state.stateMovies.map((movie) => (
+          {/*  {this.state.stateMovies.map((movie) => (
             <Col
               xm={12}
               sm={6}
@@ -85,14 +86,18 @@ class SearchArea extends Component {
             >
               <img className="img-fluid" src={movie.Poster} alt={movie.Title} />
             </Col>
-          ))}
+          ))} */}
+          <CustomCarousel
+            searchQuery={this.state.searchQuery}
+            movies={this.state.stateMovies}
+          />
         </Row>
       </Container>
-    )
+    );
   }
 }
 
-export default SearchArea
+export default SearchArea;
 
 /*  <div class="container-fluid mt-5">
         <div id="row-icons" class="d-flex ml-4">
