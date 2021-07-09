@@ -1,10 +1,10 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap"
 import {
   FaFacebookSquare,
   FaInstagram,
   FaTwitter,
   FaYoutube,
-} from "react-icons/fa";
+} from "react-icons/fa"
 
 const Footer = () => (
   <footer className="mt-5">
@@ -38,7 +38,7 @@ const Footer = () => (
           <p className="text-nowrap">Corporate Information</p>
         </Col>
         <Col xs={12} ClassName="mb-2 my-4">
-          <a className="service-code" href="#">
+          <a className="service-code" href="/">
             Service Code
           </a>
         </Col>
@@ -50,6 +50,6 @@ const Footer = () => (
       </Row>
     </Container>
   </footer>
-);
+)
 
-export default Footer;
+export default Footer

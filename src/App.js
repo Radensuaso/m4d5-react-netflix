@@ -1,7 +1,7 @@
 import "./App.css"
 import NetflixNavbar from "./components/NetflixNavbar"
 import SearchArea from "./components/SearchArea"
-import CustomCarousel from "./components/CustomCarousel"
+/* import CustomCarousel from "./components/CustomCarousel" */
 import Footer from "./components/Footer"
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <>
       <NetflixNavbar />
       <SearchArea />
-     {/*  <CustomCarousel /> */}
+      {/*  <CustomCarousel /> */}
       <Footer />
     </>
   )

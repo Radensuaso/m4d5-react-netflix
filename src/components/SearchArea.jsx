@@ -1,38 +1,44 @@
-import React, { Component } from "react";
-import { Button, Container, Row, Col, Form } from "react-bootstrap";
-import { FaStream, FaThLarge } from "react-icons/fa";
-import CustomCarousel from "./CustomCarousel";
+import React, { Component } from "react"
+import { Button, Container, Row, Col, Form } from "react-bootstrap"
+import { FaStream, FaThLarge } from "react-icons/fa"
+import CustomCarousel from "./CustomCarousel"
 
 class SearchArea extends Component {
   state = {
     stateMovies: [],
     searchValue: "",
-  };
+  }
 
-  fetchAndDisplayMovies = async (e, search) => {
-    e.preventDefault();
+  fetchAndDisplayMovies = async (search, e) => {
+    if (e) {
+      e.preventDefault()
+    }
 
     try {
       const response = await fetch(
         "http://www.omdbapi.com/?apikey=3d9e8fbe&s=" + search
-      );
+      )
 
-      const parsedResponse = await response.json();
-      const movies = parsedResponse.Search;
+      const parsedResponse = await response.json()
+      const movies = parsedResponse.Search
 
       if (response.ok) {
-        this.setState({ stateMovies: movies });
+        this.setState({ stateMovies: movies })
       } else {
-        console.log("something went wrong");
+        console.log("something went wrong")
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   updateSearchState = (value) => {
-    this.setState({ searchValue: value });
-  };
+    this.setState({ searchValue: value })
+  }
+
+  componentDidMount = () => {
+    this.fetchAndDisplayMovies("harry potter")
+  }
 
   render() {
     return (
@@ -42,7 +48,7 @@ class SearchArea extends Component {
             <h3 className="mr-3 text-nowrap">Search Movies</h3>
             <form
               onSubmit={(e) =>
-                this.fetchAndDisplayMovies(e, this.state.searchValue)
+                this.fetchAndDisplayMovies(this.state.searchValue, e)
               }
               className="d-flex"
             >
@@ -93,36 +99,8 @@ class SearchArea extends Component {
           />
         </Row>
       </Container>
-    );
+    )
   }
 }
 
-export default SearchArea;
-
-/*  <div class="container-fluid mt-5">
-        <div id="row-icons" class="d-flex ml-4">
-          <h3 class="mr-3">TV Shows</h3>
-
-          <div class="dropdown">
-            <button
-              class="btn btn-secondary dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Genre
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Fantasy</a>
-              <a class="dropdown-item" href="#">Comedy</a>
-              <a class="dropdown-item" href="#">Drama</a>
-            </div>
-          </div>
-          <div id="div-Icons" class="col d-none d-sm-block">
-            <div class="mr-n1"><i class="fas fa-stream"></i></div>
-            <div><i class="bi bi-grid-fill"></i></div>
-          </div>
-        </div>
-      </div> */
+export default SearchArea
