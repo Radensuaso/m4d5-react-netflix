@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import MyCarouselMovie from "./MyCarouselMovie";
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 
 export default class Carousel extends Component {
   state = {
@@ -27,7 +27,19 @@ export default class Carousel extends Component {
   render() {
     return (
       <div>
-        <h1>hello</h1>
+        <Container>
+          <Row>
+            {this.state.movies.map((movie) => (
+              <Col xs={12} sm={6} md={4} lg={3} xl={2}>
+                <img
+                  className="d-block w-100"
+                  src={movie.Poster}
+                  alt={movie.Title}
+                />
+              </Col>
+            ))}
+          </Row>
+        </Container>
         {/*  <Carousel>
           <Carousel.Item>
             <Container>
