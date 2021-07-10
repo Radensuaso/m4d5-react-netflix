@@ -6,7 +6,7 @@ import {
   FaYoutube,
 } from "react-icons/fa"
 
-const Footer = () => (
+const NetflixFooter = () => (
   <footer className="mt-5">
     <Container>
       <Row>
@@ -52,4 +52,4 @@ const Footer = () => (
   </footer>
 )
 
-export default Footer
+export default NetflixFooter
