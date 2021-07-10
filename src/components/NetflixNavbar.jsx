@@ -1,25 +1,39 @@
-import { Container, Navbar, Nav, Image } from "react-bootstrap"
+import { Container, Navbar, Nav } from "react-bootstrap"
+import logo from "../assets/netflix_logo.png"
+import profilePic from "../assets/profile-pic.jpg"
+import { FaSearch, FaBell, FaSortDown } from "react-icons/fa"
 const NetflixNavbar = () => (
   <Navbar
-    className="bg-dark-netflix"
+    className="bg-dark-netflix home-navbar"
     collapseOnSelect
     expand="lg"
     variant="dark"
   >
     <Container fluid>
       <Navbar.Brand href="#home">
-        <Image src="../../public/assets/netflix_logo.png" />
+        <img id="logo-navbar" src={logo} alt="" />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="#features">Features</Nav.Link>
-          <Nav.Link href="#pricing">Pricing</Nav.Link>
+          <Nav.Link href="#features">Home</Nav.Link>
         </Nav>
-        <Nav>
-          <Nav.Link href="#deets">More deets</Nav.Link>
-          <Nav.Link eventKey={2} href="#memes">
-            Dank memes
+        <Nav className="align-items-center">
+          <Nav.Link href="/">
+            <FaSearch />
+          </Nav.Link>
+          <Nav.Link eventKey={2} href="/">
+            <FaBell />
+          </Nav.Link>
+          <Nav.Link className="d-flex align-items-center" eventKey={3} href="#">
+            Tigers{" "}
+            <img
+              className="mx-2"
+              id="profile-pic"
+              src={profilePic}
+              alt="profile-pic"
+            />{" "}
+            <FaSortDown />
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>
