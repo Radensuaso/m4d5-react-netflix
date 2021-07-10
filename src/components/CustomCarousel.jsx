@@ -39,7 +39,7 @@ export default class CustomCarousel extends Component {
           <Carousel.Item>
             <Row>
               {this.props.movies
-                .filter((movie, i) => i < 6)
+                .filter((movie, i) => i >= 2 && i < 8)
                 .map((movie, i) => (
                   <MyCarouselMovie key={i} movie={movie} />
                 ))}
@@ -48,7 +48,7 @@ export default class CustomCarousel extends Component {
           <Carousel.Item>
             <Row>
               {this.props.movies
-                .filter((movie, i) => i < 6)
+                .filter((movie, i) => i >= 4 && i < 10)
                 .map((movie, i) => (
                   <MyCarouselMovie key={i} movie={movie} />
                 ))}
