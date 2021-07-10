@@ -1,17 +1,13 @@
 import "./App.css"
 import NetflixNavbar from "./components/NetflixNavbar"
-import SearchArea from "./components/SearchArea"
-/* import CustomCarousel from "./components/CustomCarousel" */
+import MainArea from "./components/MainArea"
 import Footer from "./components/Footer"
 
 function App() {
   return (
     <>
       <NetflixNavbar />
-      <SearchArea />
-      {/* <CustomCarousel searchQuery="Lord of the rings" /> */}
-
-      {/*  <CustomCarousel /> */}
+      <MainArea />
       <Footer />
     </>
   )

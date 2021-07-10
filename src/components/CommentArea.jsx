@@ -1,8 +1,8 @@
+import React, { Component } from "react"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
-import Loading from "./Loading"
-
-import React, { Component } from "react"
+import LoadingSpinner from "./LoadingSpinner"
+import Alert from "react-bootstrap/Alert"
 
 class CommentArea extends Component {
   state = {
@@ -14,23 +14,23 @@ class CommentArea extends Component {
 
     allComments: [],
 
-    loading: false,
+    getIsLoading: false,
+
+    getError: false,
+
+    submitIsLoading: false,
+
+    submitted: { success: false, fail: false },
   }
 
   /* component did mount */
   componentDidMount = () => {
     this.fetchComments()
   }
-
-  /* isLoading function */
-  isLoading = (loading) => {
-    this.setState({ loading: loading })
-  }
-
   /*fetch comments */
   fetchComments = async () => {
     try {
-      this.isLoading(true)
+      this.setState({ getIsLoading: true })
       const response = await fetch(
         "https://striveschool-api.herokuapp.com/api/comments/",
         {
@@ -42,15 +42,13 @@ class CommentArea extends Component {
       )
 
       const fetchedComments = await response.json()
-
       if (response.ok) {
-        this.setState({ allComments: fetchedComments })
-        this.isLoading(false)
+        this.setState({ allComments: fetchedComments, getIsLoading: false })
       } else {
-        console.log("there was an error")
+        this.setState({ getError: true, getIsLoading: false })
       }
     } catch (error) {
-      console.log(error)
+      this.setState({ getError: true, getIsLoading: false })
     }
   }
 
@@ -59,6 +57,7 @@ class CommentArea extends Component {
   handleSubmit = async (e) => {
     e.preventDefault()
     try {
+      this.setState({ submitIsLoading: true })
       const response = await fetch(
         "https://striveschool-api.herokuapp.com/api/comments/",
         {
@@ -74,13 +73,27 @@ class CommentArea extends Component {
       )
 
       if (response.ok) {
-        alert("Post done with success")
+        this.setState({
+          postComment: {
+            comment: "",
+            rate: "",
+            elementId: "",
+          },
+          submitted: { ...this.state.submitted, success: true },
+          submitIsLoading: false,
+        })
         this.fetchComments()
       } else {
-        console.log("There was an error")
+        this.setState({
+          submitted: { ...this.state.submitted, fail: true },
+          submitIsLoading: false,
+        })
       }
     } catch (error) {
-      console.log(error)
+      this.setState({
+        submitted: { ...this.state.submitted, fail: true },
+        submitIsLoading: false,
+      })
     }
   }
 
@@ -101,10 +114,10 @@ class CommentArea extends Component {
         alert("The comment was deleted with success")
         this.fetchComments()
       } else {
-        console.log("There was an error")
+        this.setState({ error: true })
       }
     } catch (error) {
-      console.log(error)
+      this.setState({ error: true })
     }
   }
 
@@ -121,19 +134,9 @@ class CommentArea extends Component {
 
   render() {
     return (
-      <div className="comment-area d-flex flex-column align-items-center p-4 position-absolute">
-        <div className="align-self-end text-danger">
-          <i className="bi bi-x-circle-fill"></i>
-        </div>
-        <div className="comment-img-div mt-3">
-          <img
-            className="img-fluid"
-            src={this.props.book.img}
-            alt={this.props.book.title + "cover picture"}
-          />
-        </div>
+      <div className="comment-area d-flex flex-column align-items-center p-4">
         <div>
-          <h4 className="my-4">{this.props.book.title}</h4>
+          <h4 className="my-4">{this.props.movie.Title}</h4>
 
           <form onSubmit={(e) => this.handleSubmit(e)}>
             <Form.Control
@@ -141,7 +144,7 @@ class CommentArea extends Component {
                 this.handleStateComment(
                   "comment",
                   e.currentTarget.value,
-                  this.props.book.asin
+                  this.props.movie.imdbID
                 )
               }
               as="textarea"
@@ -154,7 +157,7 @@ class CommentArea extends Component {
                 this.handleStateComment(
                   "rate",
                   e.currentTarget.value,
-                  this.props.book.asin
+                  this.props.movie.imdbID
                 )
               }
               className="my-2"
@@ -162,19 +165,39 @@ class CommentArea extends Component {
               placeholder="1 to 5 rate the book!"
               value={this.state.postComment.rate}
             />
-            <Button className="my-2" variant="success" type="submit">
-              Submit
-            </Button>
+            <div className="d-flex align-items-center">
+              <Button className="my-2 mr-2" variant="success" type="submit">
+                Submit
+              </Button>
+              {this.state.submitIsLoading && <LoadingSpinner />}
+            </div>
           </form>
+          {this.state.submitted.success && (
+            <Alert variant="success">
+              Your comment was submitted with success!
+            </Alert>
+          )}
+          {this.state.submitted.fail && (
+            <Alert variant="danger">
+              Something went wrong with your submission.
+            </Alert>
+          )}
         </div>
-        <div className="w-100">
-          {this.state.Loading ? (
-            <Loading />
+        <div className="w-100 mt-4">
+          {this.state.getError && (
+            <Alert variant="danger">
+              Something went wrong on loading the book comments.
+            </Alert>
+          )}
+          {this.state.getIsLoading ? (
+            <LoadingSpinner className="mt-4" />
           ) : (
             this.state.allComments
-              .filter((comment) => comment.elementId === this.props.book.asin)
+              .filter(
+                (comment) => comment.elementId === this.props.movie.imdbID
+              )
               .map((comment) => (
-                <div className="border rounded p-3 mt-4" key={comment._id}>
+                <div className="border rounded p-3 mb-4" key={comment._id}>
                   <p>
                     <strong>Comment: </strong>
                     {comment.comment}

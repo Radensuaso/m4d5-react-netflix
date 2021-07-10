@@ -25,7 +25,7 @@ const NetflixNavbar = () => (
           <Nav.Link eventKey={2} href="/">
             <FaBell />
           </Nav.Link>
-          <Nav.Link className="d-flex align-items-center" eventKey={3} href="/">
+          <Nav.Link className="d-flex align-items-center" eventKey={3} href="#">
             Tigers{" "}
             <img
               className="mx-2"
